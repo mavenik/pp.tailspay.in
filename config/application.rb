@@ -26,5 +26,6 @@ module PpTailspayIn
       exception_recipients: %w{nikhil@lanjewar.com}
     } unless Rails.env.development?
    # config.i18n.default_locale = :de
+   config.assets.enabled = false
   end
 end
