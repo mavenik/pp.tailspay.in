@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: furries
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)      not null
+#  location_id :integer
+#  description :text
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  location_id: 1
+  description: MyText
+
+two:
+  name: MyString
+  location_id: 1
+  description: MyText
