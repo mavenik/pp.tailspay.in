@@ -30,6 +30,10 @@ gem 'foreman'
 gem 'puma'
 gem 'exception_notification'
 
+gem 'sidekiq'
+gem 'neography'
+gem 'elasticsearch-model'
+
 # To use ActiveModel has_secure_password
 gem 'bcrypt'
 
