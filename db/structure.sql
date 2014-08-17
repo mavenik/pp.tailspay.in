@@ -124,6 +124,39 @@ ALTER SEQUENCE fosters_id_seq OWNED BY fosters.id;
 
 
 --
+-- Name: furries; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE furries (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    location_id integer,
+    description text,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: furries_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE furries_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: furries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE furries_id_seq OWNED BY furries.id;
+
+
+--
 -- Name: locations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -167,6 +200,13 @@ CREATE TABLE schema_migrations (
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY furries ALTER COLUMN id SET DEFAULT nextval('furries_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY locations ALTER COLUMN id SET DEFAULT nextval('locations_id_seq'::regclass);
 
 
@@ -191,6 +231,14 @@ ALTER TABLE ONLY donors
 
 ALTER TABLE ONLY fosters
     ADD CONSTRAINT fosters_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: furries_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY furries
+    ADD CONSTRAINT furries_pkey PRIMARY KEY (id);
 
 
 --
@@ -225,6 +273,14 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 
 
 --
+-- Name: furries_location_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY furries
+    ADD CONSTRAINT furries_location_id_fkey FOREIGN KEY (location_id) REFERENCES locations(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -239,4 +295,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140817013113');
 INSERT INTO schema_migrations (version) VALUES ('20140817013202');
 
 INSERT INTO schema_migrations (version) VALUES ('20140817020837');
+
+INSERT INTO schema_migrations (version) VALUES ('20140817022202');
 
